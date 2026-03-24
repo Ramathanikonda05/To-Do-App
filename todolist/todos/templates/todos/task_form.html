@@ -1,0 +1,33 @@
+{% extends "todos/base.html" %}
+{% load widget_tweaks %}
+{% block title %}{{ view.object|default:"New Task" }}{% endblock %}
+
+{% block content %}
+<h3 class="mb-3">{{ view.object|default:"New Task" }}</h3>
+<form method="post" novalidate>
+  {% csrf_token %}
+
+  <div class="mb-3">
+    <label class="form-label">Title</label>
+    {{ form.title|add_class:"form-control" }}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    {{ form.description|add_class:"form-control"|attr:"rows:3" }}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Status</label>
+    {{ form.status|add_class:"form-select" }}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Reminder Time</label>
+    {{ form.reminder|add_class:"form-control" }}
+  </div>
+
+  <button class="btn btn-success" type="submit">Save Task</button>
+  <a class="btn btn-secondary" href="{% url 'task_list' %}">Cancel</a>
+</form>
+{% endblock %}

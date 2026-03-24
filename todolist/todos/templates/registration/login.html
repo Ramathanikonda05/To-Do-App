@@ -1,0 +1,40 @@
+{% extends "todos/base.html" %}
+{% load widget_tweaks %}  
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6">
+    <div class="card shadow-lg rounded-3">
+      <div class="card-body p-4">
+        <h3 class="mb-4 text-center">Login</h3>
+
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {{ form.non_field_errors }}
+
+          <div class="mb-3">
+            <label for="id_username" class="form-label">Username</label>
+            {{ form.username|add_class:"form-control"|attr:"placeholder:Enter your username" }}
+          </div>
+
+          <div class="mb-3">
+            <label for="id_password" class="form-label">Password</label>
+            {{ form.password|add_class:"form-control"|attr:"placeholder:Enter your password" }}
+          </div>
+
+          <div class="d-grid">
+            <button class="btn btn-primary" type="submit">Login</button>
+          </div>
+        </form>
+
+        <div class="text-center mt-3">
+          <small>If your a new user!</small>
+          <a class="btn btn-link p-0 ms-1" href="{% url 'register' %}">Register here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
